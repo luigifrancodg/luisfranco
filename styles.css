@@ -709,6 +709,8 @@ footer {
 
   .form-row { grid-template-columns: 1fr; }
 
+  .tab-bar-wrap { justify-content: flex-start; }
+
   .slide { padding: 42px 0; }
 
   .container { padding: 0 1.5rem; }
