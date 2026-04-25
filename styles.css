@@ -207,7 +207,11 @@ h1 {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+@media (min-width: 900px) {
+  .tab-bar-wrap { justify-content: center; }
 }
 
 .tab-bar-wrap::-webkit-scrollbar { display: none; }
@@ -708,8 +712,6 @@ footer {
   .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
 
   .form-row { grid-template-columns: 1fr; }
-
-  .tab-bar-wrap { justify-content: flex-start; }
 
   .slide { padding: 42px 0; }
 
