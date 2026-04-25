@@ -35,9 +35,6 @@ tabs.forEach(tab => {
   });
 });
 
-// Contact form — replace YOUR_FORMSPREE_ID after signing up at formspree.io
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
-
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
@@ -50,22 +47,31 @@ if (contactForm) {
     status.textContent = '';
     status.className = 'form-status';
 
+    const data = {
+      name:    contactForm.querySelector('[name="name"]').value,
+      email:   contactForm.querySelector('[name="email"]').value,
+      subject: contactForm.querySelector('[name="subject"]').value,
+      message: contactForm.querySelector('[name="message"]').value,
+    };
+
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch('https://formsubmit.co/ajax/luis.franco@accenture.com', {
         method:  'POST',
-        body:    new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(data),
       });
 
-      if (res.ok) {
-        status.textContent = 'Message sent — I\'ll be in touch soon.';
+      const json = await res.json();
+
+      if (res.ok && json.success === 'true') {
+        status.textContent = "Message sent — I'll be in touch soon.";
         status.className = 'form-status success';
         contactForm.reset();
       } else {
         throw new Error('server');
       }
     } catch {
-      status.textContent = 'Something went wrong. Try emailing me directly.';
+      status.textContent = 'Something went wrong. Try emailing me directly at luis.franco@accenture.com';
       status.className = 'form-status error';
     } finally {
       btn.disabled = false;
