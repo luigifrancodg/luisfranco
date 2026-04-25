@@ -55,7 +55,7 @@ if (contactForm) {
     };
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/luis.franco@accenture.com', {
+      const res = await fetch('https://formsubmit.co/ajax/luigifdg2@gmail.com', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body:    JSON.stringify(data),
